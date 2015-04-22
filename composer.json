@@ -1,0 +1,28 @@
+{
+    "name": "bazzline/php_component_cli_arguments",
+    "description": "php cli command thin wrapper to easy up usage and validation of command line arguments",
+    "keywords": ["getopt", "argument", "flag", "trigger", "php", "cli", "shell"],
+    "type": "library",
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.6.4"
+    },
+    "license": "LGPLv3",
+    "authors": [
+        {
+            "name": "Stev Leibelt",
+            "email": "artodeto@bazzline.net",
+            "homepage": "https://artodeto.bazzline.net",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Net\\Bazzline\\Component\\Cli\\Arguments": "source/",
+            "Test\\Net\\Bazzline\\Component\\Cli\\Arguments": "test/"
+        }
+    }
+}
