@@ -152,36 +152,46 @@ class Arguments
         foreach ($arguments as $argument) {
             if ($this->startsWith($argument, '--')) {
                 $argument = substr($argument, 2);
-                if ($this->contains($argument, '=')) {
-                    $position   = strpos($argument, '=');
-                    $name       = substr($argument, 0, $position);
-                    $value      = substr($argument, ($position + 1));
-                    $this->addToList($name, $value);
-                } else {
-                    $this->flags[] = $argument;
-                }
+                $this->handleLongNameListOrFlag($argument);
             } else if ($this->startsWith($argument, '-')) {
                 $argument = substr($argument, 1);
-                $containsEqualCharacter = ($this->contains($argument, '='));
-                $equalCharacterIsOnSecondPosition = (strpos($argument, '=') === 1);
-                $isShortNameList = ($containsEqualCharacter
-                    && $equalCharacterIsOnSecondPosition);
-                if ($isShortNameList) {
-                    $name   = substr($argument, 0, 1);
-                    $value  = substr($argument, 2);
-                    $this->addToList($name, $value);
-                } else if (!$containsEqualCharacter) {
-                    $length = strlen($argument);
-                    $iterator = 0;
-                    while ($iterator < $length) {
-                        $this->flags[] = $argument{$iterator};
-                        ++$iterator;
-                    }
-                }
+                $this->handleShortNameListOrFlag($argument);
             } else {
                 $this->values[] = $argument;
             }
 
+        }
+    }
+
+    private function handleLongNameListOrFlag($argument)
+    {
+        if ($this->contains($argument, '=')) {
+            $position   = strpos($argument, '=');
+            $name       = substr($argument, 0, $position);
+            $value      = substr($argument, ($position + 1));
+            $this->addToList($name, $value);
+        } else {
+            $this->flags[] = $argument;
+        }
+    }
+
+    private function handleShortNameListOrFlag($argument)
+    {
+        $containsEqualCharacter = ($this->contains($argument, '='));
+        $equalCharacterIsOnSecondPosition = (strpos($argument, '=') === 1);
+        $isShortNameList = ($containsEqualCharacter
+            && $equalCharacterIsOnSecondPosition);
+        if ($isShortNameList) {
+            $name   = substr($argument, 0, 1);
+            $value  = substr($argument, 2);
+            $this->addToList($name, $value);
+        } else if (!$containsEqualCharacter) {
+            $length = strlen($argument);
+            $iterator = 0;
+            while ($iterator < $length) {
+                $this->flags[] = $argument{$iterator};
+                ++$iterator;
+            }
         }
     }
 
