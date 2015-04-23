@@ -14,12 +14,28 @@ The versioneye status is:
 
 Take a look on [openhub.net](https://www.openhub.net/p/php_component_cli_arguments).
 
-# Why?
+# Install
+
+## By Hand
+
+    mkdir -p vendor/net_bazzline/php_component_cli_arguments
+        cd vendor/net_bazzline/php_component_cli_arguments
+            git clone https://github.com/bazzline/php_component_cli_arguments .
+
+## With [Packagist](https://packagist.org/packages/net_bazzline/php_component_cli_arguments)
+
+    composer require net_bazzline/php_component_cli_arguments:dev-master
+
+# Benefits
 
 * easy up handling of following kinds of arguments
     * flags (command -f|--force)
     * lists (command --foobar=foo | command -f=foo)
     * values values (command <value>)
+
+# Optimization Potential
+
+* 
 
 # Example
 
@@ -142,6 +158,17 @@ Since I won't write "never say never", if you have a smart idea or way to easy u
 
 Optional arguments underlying the same problems as validation. It is not that easy to implement in an elegant way. It is very special/domain specific (e.g. an argument is optional if flag "--xyz" is used, otherwise mandatory).
 Your code has to take care if an argument is passed or not anyways. Using the available "has..."-methods should be sufficient and generic enough.
+
+
+# API
+
+Thanks to [apigen](https://github.com/apigen/apigen), the api is available in the [document](https://github.com/bazzline/php_component_cli_arguments/blob/master/document/index.html) section or [online](http://code.bazzline.net/).
+
+# History
+
+* upcomming
+* [1.0.0](https://github.com/bazzline/php_component_cli_argument/tree/1.0.0) - released at 23.04.2015
+    * initial release
 
 # Links (other good projects)
 
