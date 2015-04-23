@@ -1,5 +1,19 @@
 # Argument Handling for PHP CLI Scripts
 
+This project aims to deliver a easy to use php command component.
+
+The build status of the current master branch is tracked by Travis CI:
+[![Build Status](https://travis-ci.org/bazzline/php_component_cli_arguments.png?branch=master)](http://travis-ci.org/bazzline/php_component_cli_arguments)
+[![Latest stable](https://img.shields.io/packagist/v/net_bazzline/php_component_cli_arguments.svg)](https://packagist.org/packages/net_bazzline/php_component_cli_arguments)
+
+The scrutinizer status are:
+[![code quality](https://scrutinizer-ci.com/g/bazzline/php_component_cli_arguments/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/bazzline/php_component_cli_arguments/) | [![build status](https://scrutinizer-ci.com/g/bazzline/php_component_cli_arguments/badges/build.png?b=master)](https://scrutinizer-ci.com/g/bazzline/php_component_cli_arguments/)
+
+The versioneye status is:
+[![Dependency Status](https://www.versioneye.com/user/projects/553941560b24225ef6000002/badge.svg?style=flat)](https://www.versioneye.com/user/projects/553941560b24225ef6000002)
+
+Take a look on [openhub.net](https://www.openhub.net/p/php_component_cli_arguments).
+
 # Why?
 
 * easy up handling of following kinds of arguments
@@ -11,7 +25,7 @@
 
 The call of following example.
 ```
-php example.php --foo bar --foobar=foo --foobar="bar" -f="foo" -f=bar -b foobar foo -flag
+php [run.php](https://github.com/bazzline/php_component_cli_arguments/blob/master/Example/run.php) --foo bar --foobar=foo --foobar="bar" -f="foo" -f=bar -b foobar foo -flag
 ```
 
 Generates the following output.

@@ -4,9 +4,9 @@
  * @since: 2015-04-16
  */
 
-require_once __DIR__ . '/Arguments.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
-$arguments = new Arguments($argv);
+$arguments = new \Net\Bazzline\Component\Cli\Arguments\Arguments($argv);
 
 if ($arguments->hasArguments()) {
     echo 'arguments provided:' . PHP_EOL;
