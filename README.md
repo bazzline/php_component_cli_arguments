@@ -19,8 +19,8 @@ Take a look on [openhub.net](https://www.openhub.net/p/php_component_cli_argumen
 ## By Hand
 
     mkdir -p vendor/net_bazzline/php_component_cli_arguments
-        cd vendor/net_bazzline/php_component_cli_arguments
-            git clone https://github.com/bazzline/php_component_cli_arguments .
+    cd vendor/net_bazzline/php_component_cli_arguments
+    git clone https://github.com/bazzline/php_component_cli_arguments .
 
 ## With [Packagist](https://packagist.org/packages/net_bazzline/php_component_cli_arguments)
 
