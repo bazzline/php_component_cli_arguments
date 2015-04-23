@@ -35,13 +35,14 @@ Take a look on [openhub.net](https://www.openhub.net/p/php_component_cli_argumen
 
 # Optimization Potential
 
-* 
+* add api documentation
 
 # Example
 
-The call of following example.
+Simple call [run.php](https://github.com/bazzline/php_component_cli_arguments/blob/master/Example/run.php) with tons of arguments like illustrated below.
+
 ```
-php [run.php](https://github.com/bazzline/php_component_cli_arguments/blob/master/Example/run.php) --foo bar --foobar=foo --foobar="bar" -f="foo" -f=bar -b foobar foo -flag
+php run.php --foo bar --foobar=foo --foobar="bar" -f="foo" -f=bar -b foobar foo -flag
 ```
 
 Generates the following output.
