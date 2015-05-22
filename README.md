@@ -168,6 +168,8 @@ Thanks to [apigen](https://github.com/apigen/apigen), the api is available in th
 # History
 
 * upcomming
+* [1.0.1](https://github.com/bazzline/php_component_cli_argument/tree/1.0.1) - released at 22.05.2015
+    * updated dependencies
 * [1.0.0](https://github.com/bazzline/php_component_cli_argument/tree/1.0.0) - released at 23.04.2015
     * initial release
 
