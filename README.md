@@ -1,6 +1,6 @@
 # Argument Handling for PHP CLI Scripts
 
-This project aims to deliver a easy to use php command component.
+This project aims to deliver a easy to use and free as in freedom php command component.
 
 The build status of the current master branch is tracked by Travis CI:
 [![Build Status](https://travis-ci.org/bazzline/php_component_cli_arguments.png?branch=master)](http://travis-ci.org/bazzline/php_component_cli_arguments)

@@ -1,7 +1,7 @@
 {
     "name": "net_bazzline/php_component_cli_arguments",
     "description": "php cli command thin wrapper to easy up usage and validation of command line arguments",
-    "keywords": ["getopt", "argument", "flag", "trigger", "php", "cli", "shell"],
+    "keywords": ["getopt", "argument", "flag", "trigger", "php", "cli", "shell", "lgpl", "free as in freedom"],
     "type": "library",
     "minimum-stability": "dev",
     "require": {
