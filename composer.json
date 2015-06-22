@@ -8,7 +8,7 @@
         "php": ">=5.3.3"
     },
     "require-dev": {
-        "phpunit/phpunit": "4.6.8"
+        "phpunit/phpunit": "4.7.5"
     },
     "license": "LGPLv3",
     "authors": [
