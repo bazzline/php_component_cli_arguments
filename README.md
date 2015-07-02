@@ -169,12 +169,14 @@ Thanks to [apigen](https://github.com/apigen/apigen), the api is available in th
 
 * upcomming
     * replace "setArguments" with "parse" like [nette](https://github.com/nette/command-line/blob/master/src/CommandLine/Parser.php) is doing it
+* [1.0.2](https://github.com/bazzline/php_component_cli_argument/tree/1.0.2) - released at 02.07.2015
+    * updated dependencies
 * [1.0.1](https://github.com/bazzline/php_component_cli_argument/tree/1.0.1) - released at 22.05.2015
     * updated dependencies
 * [1.0.0](https://github.com/bazzline/php_component_cli_argument/tree/1.0.0) - released at 23.04.2015
     * initial release
 
-# Links (other good projects)
+# Other Great Components
 
 * [search on packagist](https://packagist.org/search/?search_query%5Bquery%5D=getopt)
 * [yeriomin/getopt](https://github.com/yeriomin/getopt)

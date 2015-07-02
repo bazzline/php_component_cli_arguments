@@ -177,10 +177,11 @@ class Arguments
 
     private function handleShortNameListOrFlag($argument)
     {
-        $containsEqualCharacter = ($this->contains($argument, '='));
-        $equalCharacterIsOnSecondPosition = (strpos($argument, '=') === 1);
-        $isShortNameList = ($containsEqualCharacter
+        $containsEqualCharacter             = ($this->contains($argument, '='));
+        $equalCharacterIsOnSecondPosition   = (strpos($argument, '=') === 1);
+        $isShortNameList                    = ($containsEqualCharacter
             && $equalCharacterIsOnSecondPosition);
+
         if ($isShortNameList) {
             $name   = substr($argument, 0, 1);
             $value  = substr($argument, 2);
@@ -202,7 +203,7 @@ class Arguments
      */
     private function contains($string, $search)
     {
-        if (strlen($search) == 0) {
+        if (strlen($search) === 0) {
             $contains = false;
         } else {
             $contains = !(strpos($string, $search) === false);
