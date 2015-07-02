@@ -22,11 +22,12 @@ class Arguments
 
     /**
      * @param null|array $argv
+     * @param boolean $removeFirstArgument
      */
-    public function __construct($argv = null)
+    public function __construct($argv = null, $removeFirstArgument = true)
     {
         if (is_array($argv)) {
-            $this->setArguments($argv);
+            $this->setArguments($argv, $removeFirstArgument);
         } else {
             $this->initiate();
         }
@@ -123,9 +124,17 @@ class Arguments
         return (!empty($this->values));
     }
 
-    public function setArguments(array $argv)
+    /**
+     * @param array $argv
+     * @param boolean $removeFirstArgument
+     * @return $this
+     */
+    public function setArguments(array $argv, $removeFirstArgument = true)
     {
-        array_shift($argv);
+        if ($removeFirstArgument) {
+            array_shift($argv);
+        }
+
         $this->initiate();
         $this->arguments = $argv;
         $this->generate($this->arguments);
@@ -140,6 +149,7 @@ class Arguments
     private function addToList($name, $value)
     {
         $value = trim($value, '"'); //remove >"< if exists
+
         if (isset($this->lists[$name])) {
             $this->lists[$name][] = $value;
         } else {

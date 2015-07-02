@@ -207,7 +207,13 @@ class ArgumentsTest extends PHPUnit_Framework_TestCase
      * @param array $expectedLists
      * @param array $expectedValues
      */
-    public function testWithArguments(array $argv, array $expectedArguments, array $expectedFlags, array $expectedLists, array $expectedValues)
+    public function testWithArguments(
+        array $argv,
+        array $expectedArguments,
+        array $expectedFlags,
+        array $expectedLists,
+        array $expectedValues
+    )
     {
         $arguments = $this->createArguments($argv);
 
@@ -231,12 +237,24 @@ class ArgumentsTest extends PHPUnit_Framework_TestCase
         }
     }
 
+    public function testWithArgumentsAndNotRemovingFirstArgument()
+    {
+        $argv       = array('foo', 'bar');
+        $arguments  = $this->createArguments($argv, false);
+
+        $this->assertEquals($argv, $arguments->getArguments());
+        $this->assertEquals($argv, $arguments->getValues());
+        $this->assertEmpty($arguments->getFlags());
+        $this->assertEmpty($arguments->getLists());
+    }
+
     /**
      * @param null|array $argv
+     * @param boolean $removeFirstArgument
      * @return Arguments
      */
-    private function createArguments($argv = null)
+    private function createArguments($argv = null, $removeFirstArgument = true)
     {
-        return new Arguments($argv);
+        return new Arguments($argv, $removeFirstArgument);
     }
 }
