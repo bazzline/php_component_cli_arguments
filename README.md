@@ -168,10 +168,13 @@ Thanks to [apigen](https://github.com/apigen/apigen), the api is available in th
 # History
 
 * upcomming
-    * add *countValues* etc.
-    * add *hasFlags* to easy up validation if long or short flag is set (e.g. '-v|--verbose')
-    * replace "setArguments" with "parse" like [nette](https://github.com/nette/command-line/blob/master/src/CommandLine/Parser.php) is doing it
-    * updated dependency handling by beeing less restrictive
+    * @todo
+        * add *toString()'
+        * add *countValues* etc.
+        * add *hasFlags* to easy up validation if long or short flag is set (e.g. '-v|--verbose')
+        * replace "setArguments" with "parse" like [nette](https://github.com/nette/command-line/blob/master/src/CommandLine/Parser.php) is doing it
+        * remove *generate_api*
+        * updated dependency handling by beeing less restrictive
 * [1.1.2](https://github.com/bazzline/php_component_cli_argument/tree/1.1.1) - released at 07.11.2015
     * updated dependencies
 * [1.1.1](https://github.com/bazzline/php_component_cli_argument/tree/1.1.1) - released at 18.08.2015
