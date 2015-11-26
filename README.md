@@ -33,10 +33,6 @@ Take a look on [openhub.net](https://www.openhub.net/p/php_component_cli_argumen
     * lists (command --foobar=foo | command -f=foo)
     * values values (command <value>)
 
-# Optimization Potential
-
-* add api documentation
-
 # Example
 
 Simple call [run.php](https://github.com/bazzline/php_component_cli_arguments/blob/master/Example/run.php) with tons of arguments like illustrated below.
@@ -163,19 +159,23 @@ Your code has to take care if an argument is passed or not anyways. Using the av
 
 # API
 
-Thanks to [apigen](https://github.com/apigen/apigen), the api is available in the [document](https://github.com/bazzline/php_component_cli_arguments/blob/master/document/index.html) section or [online](http://code.bazzline.net/).
+[API](http://www.bazzline.net/988fc4501e48d8aed30583f58a97f0d4c14ab2d3/index.html) is available at [bazzline.net](http://www.bazzline.net).
 
 # History
 
 * upcomming
     * @todo
-        * add *toString()'
-        * add *countValues* etc.
         * add *hasFlags* to easy up validation if long or short flag is set (e.g. '-v|--verbose')
-        * replace "setArguments" with "parse" like [nette](https://github.com/nette/command-line/blob/master/src/CommandLine/Parser.php) is doing it
-        * remove *generate_api*
+        * cover Collection and Parser with unit tests
         * updated dependency handling by beeing less restrictive
-* [1.1.2](https://github.com/bazzline/php_component_cli_argument/tree/1.1.1) - released at 07.11.2015
+* [2.0.0](https://github.com/bazzline/php_component_cli_argument/tree/2.0.0) - not yet released
+    * add *convertToArray()'
+    * add *convertToString()'
+    * add *getNumberOfElements()*
+    * create classes for flags, lists and values
+    * remove *generate_api*
+    * replace "setArguments" with "parseArguments" like [nette](https://github.com/nette/command-line/blob/master/src/CommandLine/Parser.php) is doing it
+* [1.1.2](https://github.com/bazzline/php_component_cli_argument/tree/1.1.2) - released at 07.11.2015
     * updated dependencies
 * [1.1.1](https://github.com/bazzline/php_component_cli_argument/tree/1.1.1) - released at 18.08.2015
     * updated dependencies

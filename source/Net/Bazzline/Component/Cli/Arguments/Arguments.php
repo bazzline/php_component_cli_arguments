@@ -11,13 +11,16 @@ class Arguments
     /** @var array */
     private $arguments;
 
-    /** @var array */
+    /** @var Collection */
     private $flags;
 
-    /** @var array */
+    /** @var Collection */
     private $lists;
 
-    /** @var array */
+    /** @var Parser */
+    private $parser;
+
+    /** @var Collection */
     private $values;
 
     /**
@@ -26,10 +29,12 @@ class Arguments
      */
     public function __construct($argv = null, $removeFirstArgument = true)
     {
+        $this->parser = new Parser();
+
         if (is_array($argv)) {
-            $this->setArguments($argv, $removeFirstArgument);
+            $this->parseArguments($argv, $removeFirstArgument);
         } else {
-            $this->initiate();
+            $this->bindValuesFromGenerator();
         }
     }
 
@@ -42,36 +47,68 @@ class Arguments
     }
 
     /**
-     * @return array
+     * @param bool $convertCollectionToArray
+     * @return array|Collection
      */
-    public function getFlags()
+    public function getFlags($convertCollectionToArray = true)
     {
-        return ($this->hasFlags()) ? $this->flags : array();
+        return (
+            $this->convertCollectionToArrayIfNeeded(
+                $this->flags,
+                $convertCollectionToArray
+            )
+        );
     }
 
     /**
      * @param string $name
-     * @return null|mixed
+     * @param bool $convertCollectionToArray
+     * @return null|Collection
      */
-    public function getList($name)
+    public function getList($name, $convertCollectionToArray = true)
     {
-        return ($this->hasList($name)) ? $this->lists[$name] : null;
+        $list = $this->lists->offsetGet($name);
+
+        if ($list instanceof Collection) {
+            $return = (
+                $this->convertCollectionToArrayIfNeeded(
+                    $list,
+                    $convertCollectionToArray
+                )
+            );
+        } else {
+            $return = null;
+        }
+
+        return $return;
     }
 
     /**
-     * @return array
+     * @param bool $convertCollectionToArray
+     * @return array|Collection
      */
-    public function getLists()
+    public function getLists($convertCollectionToArray = true)
     {
-        return ($this->hasLists()) ? $this->lists : array();
+        return (
+            $this->convertCollectionToArrayIfNeeded(
+                $this->lists,
+                $convertCollectionToArray
+            )
+        );
     }
 
     /**
-     * @return array
+     * @param bool $convertCollectionToArray
+     * @return array|Collection
      */
-    public function getValues()
+    public function getValues($convertCollectionToArray = true)
     {
-        return ($this->hasValues()) ? $this->values : array();
+        return (
+            $this->convertCollectionToArrayIfNeeded(
+                $this->values,
+                $convertCollectionToArray
+            )
+        );
     }
 
     /**
@@ -88,7 +125,7 @@ class Arguments
      */
     public function hasFlag($name)
     {
-        return in_array($name, $this->flags);
+        return $this->flags->containsValue($name);
     }
 
     /**
@@ -96,7 +133,7 @@ class Arguments
      */
     public function hasFlags()
     {
-        return (!empty($this->flags));
+        return (!$this->flags->isEmpty());
     }
 
     /**
@@ -105,7 +142,7 @@ class Arguments
      */
     public function hasList($name)
     {
-        return (isset($this->lists[$name]));
+        return $this->lists->containsKey($name);
     }
 
     /**
@@ -113,7 +150,7 @@ class Arguments
      */
     public function hasLists()
     {
-        return (!empty($this->lists));
+        return (!$this->lists->isEmpty());
     }
 
     /**
@@ -121,7 +158,7 @@ class Arguments
      */
     public function hasValues()
     {
-        return (!empty($this->values));
+        return (!$this->values->isEmpty());
     }
 
     /**
@@ -129,114 +166,70 @@ class Arguments
      * @param boolean $removeFirstArgument
      * @return $this
      */
-    public function setArguments(array $argv, $removeFirstArgument = true)
+    public function parseArguments(array $argv, $removeFirstArgument = true)
     {
         if ($removeFirstArgument) {
             array_shift($argv);
         }
 
-        $this->initiate();
         $this->arguments = $argv;
-        $this->generate($this->arguments);
+        $this->parse($this->arguments);
+        $this->bindValuesFromGenerator();
 
         return $this;
     }
 
     /**
-     * @param string $name
-     * @param mixed $value
+     * @return array
      */
-    private function addToList($name, $value)
+    public function convertToArray()
     {
-        $value = trim($value, '"'); //remove >"< if exists
-
-        if (isset($this->lists[$name])) {
-            $this->lists[$name][] = $value;
-        } else {
-            $this->lists[$name] = array($value);
-        }
-    }
-
-    private function generate(array $arguments)
-    {
-        foreach ($arguments as $argument) {
-            if ($this->startsWith($argument, '--')) {
-                $argument = substr($argument, 2);
-                $this->handleLongNameListOrFlag($argument);
-            } else if ($this->startsWith($argument, '-')) {
-                $argument = substr($argument, 1);
-                $this->handleShortNameListOrFlag($argument);
-            } else {
-                $this->values[] = $argument;
-            }
-
-        }
-    }
-
-    private function handleLongNameListOrFlag($argument)
-    {
-        if ($this->contains($argument, '=')) {
-            $position   = strpos($argument, '=');
-            $name       = substr($argument, 0, $position);
-            $value      = substr($argument, ($position + 1));
-            $this->addToList($name, $value);
-        } else {
-            $this->flags[] = $argument;
-        }
-    }
-
-    private function handleShortNameListOrFlag($argument)
-    {
-        $containsEqualCharacter             = ($this->contains($argument, '='));
-        $equalCharacterIsOnSecondPosition   = (strpos($argument, '=') === 1);
-        $isShortNameList                    = ($containsEqualCharacter
-            && $equalCharacterIsOnSecondPosition);
-
-        if ($isShortNameList) {
-            $name   = substr($argument, 0, 1);
-            $value  = substr($argument, 2);
-            $this->addToList($name, $value);
-        } else if (!$containsEqualCharacter) {
-            $length = strlen($argument);
-            $iterator = 0;
-            while ($iterator < $length) {
-                $this->flags[] = $argument{$iterator};
-                ++$iterator;
-            }
-        }
+        return $this->getArguments();
     }
 
     /**
-     * @param string $string
-     * @param string $search
-     * @return bool
+     * @return string
      */
-    private function contains($string, $search)
+    public function convertToString()
     {
-        if (strlen($search) === 0) {
-            $contains = false;
-        } else {
-            $contains = !(strpos($string, $search) === false);
-        }
-
-        return $contains;
-    }
-
-    private function initiate()
-    {
-        $this->arguments    = array();
-        $this->flags        = array();
-        $this->lists        = array();
-        $this->values       = array();
+        return implode(' ', $this->convertToArray());
     }
 
     /**
-     * @param string $string
-     * @param string $start
-     * @return bool
+     * @return string
      */
-    private function startsWith($string, $start)
+    public function __toString()
     {
-        return (strncmp($string, $start, strlen($start)) === 0);
+        return $this->convertToString();
+    }
+
+    private function parse(array $arguments)
+    {
+        $parser = $this->parser;
+
+        $parser->parse($arguments);
+    }
+
+    private function bindValuesFromGenerator()
+    {
+        $parser = $this->parser;
+
+        $this->flags    = $parser->getFlags();
+        $this->lists    = $parser->getLists();
+        $this->values   = $parser->getValues();
+    }
+
+    /**
+     * @param Collection $collection
+     * @param bool $isNeeded
+     * @return array|Collection
+     */
+    private function convertCollectionToArrayIfNeeded(Collection $collection, $isNeeded)
+    {
+        return (
+            $isNeeded
+                ? $collection->convertToArray()
+                : $collection
+        );
     }
 }
