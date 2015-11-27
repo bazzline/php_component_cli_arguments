@@ -57,7 +57,7 @@ class ArgumentsTest extends PHPUnit_Framework_TestCase
                     'foo'
                 )
             ),
-            'one short trigger' => array(
+            'one short flag' => array(
                 'argv'      => array(
                     __FILE__,
                     '-f'
@@ -71,7 +71,7 @@ class ArgumentsTest extends PHPUnit_Framework_TestCase
                 'lists'     => array(),
                 'values'    => array()
             ),
-            'one long trigger' => array(
+            'one long flag' => array(
                 'argv'      => array(
                     __FILE__,
                     '--foobar'
@@ -221,6 +221,11 @@ class ArgumentsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals((!empty($expectedFlags)), $arguments->hasFlags());
         $this->assertEquals((!empty($expectedLists)), $arguments->hasLists());
         $this->assertEquals((!empty($expectedValues)), $arguments->hasValues());
+
+        $this->assertEquals((count($expectedArguments)), $arguments->getNumberOfArguments());
+        $this->assertEquals((count($expectedFlags)), $arguments->getNumberOfFlags());
+        $this->assertEquals((count($expectedLists)), $arguments->getNumberOfLists());
+        $this->assertEquals((count($expectedValues)), $arguments->getNumberOfValues());
 
         $this->assertEquals($expectedArguments, $arguments->getArguments());
         $this->assertEquals($expectedFlags, $arguments->getFlags());

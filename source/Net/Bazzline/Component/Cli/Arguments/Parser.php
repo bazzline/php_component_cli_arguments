@@ -7,13 +7,13 @@ namespace Net\Bazzline\Component\Cli\Arguments;
 
 class Parser
 {
-    /** @var Collection */
+    /** @var array */
     private $flags;
 
-    /** @var Collection */
+    /** @var array */
     private $lists;
 
-    /** @var Collection */
+    /** @var array */
     private $values;
 
     public function __construct()
@@ -34,7 +34,7 @@ class Parser
     }
 
     /**
-     * @return Collection
+     * @return array
      */
     public function getFlags()
     {
@@ -42,7 +42,7 @@ class Parser
     }
 
     /**
-     * @return Collection
+     * @return array
      */
     public function getLists()
     {
@@ -50,7 +50,7 @@ class Parser
     }
 
     /**
-     * @return Collection
+     * @return array
      */
     public function getValues()
     {
@@ -63,18 +63,16 @@ class Parser
      */
     private function addToList($name, $value)
     {
-        $list   = $this->lists;
-        $value  = trim($value, '"'); //remove >"< if exists
+        $value = trim($value, '"'); //remove >"< if exists
 
-        if ($list->containsKey($name)) {
-            $collection = $list->getOne($name);
+        if (isset($this->lists[$name])) {
+            $collection = $this->lists[$name];
         } else {
-            //$collection = array();
-            $collection = new Collection();
+            $collection = array();
         }
 
-        $collection[]   = $value;
-        $list[$name]    = $collection;
+        $collection[]       = $value;
+        $this->lists[$name] = $collection;
     }
 
     /**
@@ -128,9 +126,9 @@ class Parser
 
     private function initiate()
     {
-        $this->flags    = new Collection();
-        $this->lists    = new Collection();
-        $this->values   = new Collection();
+        $this->flags    = array();
+        $this->lists    = array();
+        $this->values   = array();
     }
 
     /**

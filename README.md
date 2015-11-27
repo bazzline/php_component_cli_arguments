@@ -166,15 +166,14 @@ Your code has to take care if an argument is passed or not anyways. Using the av
 * upcomming
     * @todo
         * add *hasFlags* to easy up validation if long or short flag is set (e.g. '-v|--verbose')
-        * cover Collection and Parser with unit tests
-        * updated dependency handling by beeing less restrictive
-* [2.0.0](https://github.com/bazzline/php_component_cli_argument/tree/2.0.0) - not yet released
-    * add *convertToArray()'
-    * add *convertToString()'
-    * add *getNumberOfElements()*
-    * create classes for flags, lists and values
-    * remove *generate_api*
-    * replace "setArguments" with "parseArguments" like [nette](https://github.com/nette/command-line/blob/master/src/CommandLine/Parser.php) is doing it
+        * cover Parser with unit tests
+* [1.2.0](https://github.com/bazzline/php_component_cli_argument/tree/1.2.0) - released at 28.11.2015
+    * added *convertToArray()'
+    * added *convertToString()'
+    * added *getNumberOf[Arguments|Flags|Lists|Values]
+    * removed *generate_api*
+    * replaced "setArguments" with "parseArguments" like [nette](https://github.com/nette/command-line/blob/master/src/CommandLine/Parser.php) is doing it
+    * updated dependency handling by being less restrictive (added lower limit for phpunit)
 * [1.1.2](https://github.com/bazzline/php_component_cli_argument/tree/1.1.2) - released at 07.11.2015
     * updated dependencies
 * [1.1.1](https://github.com/bazzline/php_component_cli_argument/tree/1.1.1) - released at 18.08.2015
