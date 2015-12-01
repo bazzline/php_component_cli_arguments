@@ -136,7 +136,9 @@ class Parser
      */
     private function addToFittingCollection($argument)
     {
-        if ($this->startsWith($argument, '--')) {
+        if ($this->hasLengthOf($argument, 1)) {
+            $this->values[] = $argument;
+        } else if ($this->startsWith($argument, '--')) {
             $argument = substr($argument, 2);
             $this->handleLongNameListOrFlag($argument);
         } else if ($this->startsWith($argument, '-')) {
@@ -155,5 +157,18 @@ class Parser
     private function startsWith($string, $start)
     {
         return (strncmp($string, $start, strlen($start)) === 0);
+    }
+
+    /**
+     * @param string $string
+     * @param int $expectedLength
+     * @return bool
+     */
+    private function hasLengthOf($string, $expectedLength)
+    {
+        $length         = strlen($string);
+        $hasLengthOf    = ($length == $expectedLength);
+
+        return $hasLengthOf;
     }
 }

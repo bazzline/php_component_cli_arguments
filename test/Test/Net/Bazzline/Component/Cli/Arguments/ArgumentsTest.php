@@ -43,6 +43,20 @@ class ArgumentsTest extends PHPUnit_Framework_TestCase
                 'lists'     => array(),
                 'values'    => array()
             ),
+            'one value with one character' => array(
+                'argv'      => array(
+                    __FILE__,
+                    '-'
+                ),
+                'arguments' => array(
+                    '-'
+                ),
+                'flags'     => array(),
+                'lists'     => array(),
+                'values'    => array(
+                    '-'
+                )
+            ),
             'one value' => array(
                 'argv'      => array(
                     __FILE__,
