@@ -1,14 +1,26 @@
 {
     "name": "net_bazzline/php_component_cli_arguments",
     "description": "free as in freedom php cli command thin wrapper to easy up usage and validation of command line arguments",
-    "keywords": ["getopt", "argument", "flag", "trigger", "php", "cli", "shell", "lgpl", "free as in freedom"],
+    "keywords": [
+        "php",
+        "psr",
+        "psr-4",
+        "getopt",
+        "argument",
+        "flag",
+        "trigger",
+        "cli",
+        "shell",
+        "lgpl",
+        "free as in freedom"
+    ],
     "type": "library",
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.3"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.0||~5.0"
+        "phpunit/phpunit": "~4.8.0||~5.2.0"
     },
     "license": "LGPLv3",
     "authors": [
@@ -20,9 +32,13 @@
         }
     ],
     "autoload": {
-        "psr-0": {
-            "Net\\Bazzline\\Component\\Cli\\Arguments": "source/",
-            "Test\\Net\\Bazzline\\Component\\Cli\\Arguments": "test/"
+        "psr-4": {
+            "Net\\Bazzline\\Component\\Cli\\Arguments\\": "source/"
+        }
+    },
+    "autoload-dev": {
+      "psr-4": {
+            "Test\\Net\\Bazzline\\Component\\Cli\\Arguments\\": "test/"
         }
     }
 }
