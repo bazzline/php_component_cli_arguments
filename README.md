@@ -167,6 +167,8 @@ Your code has to take care if an argument is passed or not anyways. Using the av
     * @todo
         * add *hasFlags* to easy up validation if long or short flag is set (e.g. '-v|--verbose')
         * cover Parser with unit tests
+* [1.3.2](https://github.com/bazzline/php_component_cli_argument/tree/1.3.2) - released at 07.08.2016
+    * updated to phpunit 5.5
 * [1.3.1](https://github.com/bazzline/php_component_cli_argument/tree/1.3.1) - released at 05.06.2015
     * added php 7.0 to testing environment
     * enhanced phpunit compatibility by using "~4.8||~5.4"
