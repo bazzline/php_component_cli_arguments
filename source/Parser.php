@@ -68,7 +68,7 @@ class Parser
         if (isset($this->lists[$name])) {
             $collection = $this->lists[$name];
         } else {
-            $collection = array();
+            $collection = [];
         }
 
         $collection[]       = $value;
@@ -126,9 +126,9 @@ class Parser
 
     private function initiate()
     {
-        $this->flags    = array();
-        $this->lists    = array();
-        $this->values   = array();
+        $this->flags    = [];
+        $this->lists    = [];
+        $this->values   = [];
     }
 
     /**

@@ -26,145 +26,145 @@ class ArgumentsTest extends PHPUnit_Framework_TestCase
      */
     public function testWithArgumentsProvider()
     {
-        return array(
-            'empty argv' => array(
-                'argv'      => array(),
-                'arguments' => array(),
-                'flags'     => array(),
-                'lists'     => array(),
-                'values'    => array()
-            ),
-            'only file name argument' => array(
-                'argv'      => array(
+        return [
+            'empty argv' => [
+                'argv'      => [],
+                'arguments' => [],
+                'flags'     => [],
+                'lists'     => [],
+                'values'    => [],
+            ],
+            'only file name argument' => [
+                'argv'      => [
                     __FILE__
-                ),
-                'arguments' => array(),
-                'flags'     => array(),
-                'lists'     => array(),
-                'values'    => array()
-            ),
-            'one value with one character' => array(
-                'argv'      => array(
+                ],
+                'arguments' => [],
+                'flags'     => [],
+                'lists'     => [],
+                'values'    => []
+            ],
+            'one value with one character' => [
+                'argv'      => [
                     __FILE__,
                     '-'
-                ),
-                'arguments' => array(
+                ],
+                'arguments' => [
                     '-'
-                ),
-                'flags'     => array(),
-                'lists'     => array(),
-                'values'    => array(
+                ],
+                'flags'     => [],
+                'lists'     => [],
+                'values'    => [
                     '-'
-                )
-            ),
-            'one value' => array(
-                'argv'      => array(
+                ]
+            ],
+            'one value' => [
+                'argv'      => [
                     __FILE__,
                     'foo'
-                ),
-                'arguments' => array(
+                ],
+                'arguments' => [
                     'foo'
-                ),
-                'flags'     => array(),
-                'lists'     => array(),
-                'values'    => array(
+                ],
+                'flags'     => [],
+                'lists'     => [],
+                'values'    => [
                     'foo'
-                )
-            ),
-            'one short flag' => array(
-                'argv'      => array(
+                ]
+            ],
+            'one short flag' => [
+                'argv'      => [
                     __FILE__,
                     '-f'
-                ),
-                'arguments' => array(
+                ],
+                'arguments' => [
                     '-f'
-                ),
-                'flags'     => array(
+                ],
+                'flags'     => [
                     'f'
-                ),
-                'lists'     => array(),
-                'values'    => array()
-            ),
-            'one long flag' => array(
-                'argv'      => array(
+                ],
+                'lists'     => [],
+                'values'    => []
+            ],
+            'one long flag' => [
+                'argv'      => [
                     __FILE__,
                     '--foobar'
-                ),
-                'arguments' => array(
+                ],
+                'arguments' => [
                     '--foobar'
-                ),
-                'flags'     => array(
+                ],
+                'flags'     => [
                     'foobar'
-                ),
-                'lists'     => array(),
-                'values'    => array()
-            ),
-            'one short list without quotation mark' => array(
-                'argv'      => array(
+                ],
+                'lists'     => [],
+                'values'    => []
+            ],
+            'one short list without quotation mark' => [
+                'argv'      => [
                     __FILE__,
                     '-f=oo'
-                ),
-                'arguments' => array(
+                ],
+                'arguments' => [
                     '-f=oo'
-                ),
-                'flags'     => array(),
-                'lists'     => array(
-                    'f' => array(
+                ],
+                'flags'     => [],
+                'lists'     => [
+                    'f' => [
                         'oo'
-                    )
-                ),
-                'values'    => array()
-            ),
-            'one short list with quotation mark' => array(
-                'argv'      => array(
+                    ]
+                ],
+                'values'    => []
+            ],
+            'one short list with quotation mark' => [
+                'argv'      => [
                     __FILE__,
                     '-f="oo"'
-                ),
-                'arguments' => array(
+                ],
+                'arguments' => [
                     '-f="oo"'
-                ),
-                'flags'  => array(),
-                'lists'     => array(
-                    'f' => array(
+                ],
+                'flags'  => [],
+                'lists'     => [
+                    'f' => [
                         'oo'
-                    )
-                ),
-                'values'    => array()
-            ),
-            'one long list without quotation mark' => array(
-                'argv'      => array(
+                    ]
+                ],
+                'values'    => []
+            ],
+            'one long list without quotation mark' => [
+                'argv'      => [
                     __FILE__,
                     '--foobar=baz'
-                ),
-                'arguments' => array(
+                ],
+                'arguments' => [
                     '--foobar=baz'
-                ),
-                'flags'  => array(),
-                'lists'     => array(
-                    'foobar' => array(
+                ],
+                'flags'  => [],
+                'lists'     => [
+                    'foobar' => [
                         'baz'
-                    )
-                ),
-                'values'    => array()
-            ),
-            'one long list with quotation mark' => array(
-                'argv'      => array(
+                    ]
+                ],
+                'values'    => []
+            ],
+            'one long list with quotation mark' => [
+                'argv'      => [
                     __FILE__,
                     '--foobar="baz"'
-                ),
-                'arguments' => array(
+                ],
+                'arguments' => [
                     '--foobar="baz"'
-                ),
-                'flags'  => array(),
-                'lists'     => array(
-                    'foobar' => array(
+                ],
+                'flags'  => [],
+                'lists'     => [
+                    'foobar' => [
                         'baz'
-                    )
-                ),
-                'values'    => array()
-            ),
-            'complex example' => array(
-                'argv'      => array(
+                    ]
+                ],
+                'values'    => []
+            ],
+            'complex example' => [
+                'argv'      => [
                     __FILE__,
                     '--foobar="foo"',
                     '--foobar=bar',
@@ -175,8 +175,8 @@ class ArgumentsTest extends PHPUnit_Framework_TestCase
                     'foo',
                     '-z',
                     '-flag'
-                ),
-                'arguments' => array(
+                ],
+                'arguments' => [
                     '--foobar="foo"',
                     '--foobar=bar',
                     'foobar',
@@ -186,31 +186,31 @@ class ArgumentsTest extends PHPUnit_Framework_TestCase
                     'foo',
                     '-z',
                     '-flag'
-                ),
-                'flags'  => array(
+                ],
+                'flags'  => [
                     'b',
                     'z',
                     'f',
                     'l',
                     'a',
                     'g'
-                ),
-                'lists'     => array(
-                    'foobar'    => array(
+                ],
+                'lists'     => [
+                    'foobar'    => [
                         'foo',
                         'bar'
-                    ),
-                    'f'         => array(
+                    ],
+                    'f'         => [
                         'foo',
                         'bar'
-                    )
-                ),
-                'values'    => array(
+                    ]
+                ],
+                'values'    => [
                     'foobar',
                     'foo'
-                )
-            )
-        );
+                ]
+            ]
+        ];
     }
 
     /**
@@ -258,7 +258,7 @@ class ArgumentsTest extends PHPUnit_Framework_TestCase
 
     public function testWithArgumentsAndNotRemovingFirstArgument()
     {
-        $argv       = array('foo', 'bar');
+        $argv       = ['foo', 'bar'];
         $arguments  = $this->createArguments($argv, false);
 
         $this->assertEquals($argv, $arguments->getArguments());
