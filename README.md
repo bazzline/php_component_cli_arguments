@@ -14,17 +14,23 @@ The versioneye status is:
 
 Take a look on [openhub.net](https://www.openhub.net/p/php_component_cli_arguments).
 
+The current change log can be found [here](https://github.com/bazzline/php_component_cli_arguments/blob/master/CHANGELOG.md).
+
 # Install
 
 ## By Hand
 
-    mkdir -p vendor/net_bazzline/php_component_cli_arguments
-    cd vendor/net_bazzline/php_component_cli_arguments
-    git clone https://github.com/bazzline/php_component_cli_arguments .
+```bash
+mkdir -p vendor/net_bazzline/php_component_cli_arguments
+cd vendor/net_bazzline/php_component_cli_arguments
+git clone https://github.com/bazzline/php_component_cli_arguments .
+```
 
 ## With [Packagist](https://packagist.org/packages/net_bazzline/php_component_cli_arguments)
 
-    composer require net_bazzline/php_component_cli_arguments:dev-master
+```bash
+composer require net_bazzline/php_component_cli_arguments:dev-master
+```
 
 # Benefits
 
@@ -156,49 +162,9 @@ Since I won't write "never say never", if you have a smart idea or way to easy u
 Optional arguments underlying the same problems as validation. It is not that easy to implement in an elegant way. It is very special/domain specific (e.g. an argument is optional if flag "--xyz" is used, otherwise mandatory).
 Your code has to take care if an argument is passed or not anyways. Using the available "has..."-methods should be sufficient and generic enough.
 
-
 # API
 
 [API](http://www.bazzline.net/988fc4501e48d8aed30583f58a97f0d4c14ab2d3/index.html) is available at [bazzline.net](http://www.bazzline.net).
-
-# History
-
-* upcomming
-    * @todo
-        * add *hasFlags* to easy up validation if long or short flag is set (e.g. '-v|--verbose')
-        * cover Parser with unit tests
-        * synchronize styling of the release dates
-* [1.4.0](https://github.com/bazzline/php_component_cli_argument/tree/1.4.0) - released at 2017-01-29
-    * updated minimum requirements to php 5.6
-* [1.3.2](https://github.com/bazzline/php_component_cli_argument/tree/1.3.2) - released at 07.08.2016
-    * updated to phpunit 5.5
-* [1.3.1](https://github.com/bazzline/php_component_cli_argument/tree/1.3.1) - released at 05.06.2015
-    * added php 7.0 to testing environment
-    * enhanced phpunit compatibility by using "~4.8||~5.4"
-    * moved to psr-4 autoloading
-    * removed php 5.3.3 testing environment
-    * updated to phpunit 5.4
-* [1.3.0](https://github.com/bazzline/php_component_cli_argument/tree/1.3.0) - released at 01.12.2015
-    * added support for single argument like "a" or "-"
-* [1.2.0](https://github.com/bazzline/php_component_cli_argument/tree/1.2.0) - released at 28.11.2015
-    * added *convertToArray()'
-    * added *convertToString()'
-    * added *getNumberOf[Arguments|Flags|Lists|Values]
-    * removed *generate_api*
-    * replaced "setArguments" with "parseArguments" like [nette](https://github.com/nette/command-line/blob/master/src/CommandLine/Parser.php) is doing it
-    * updated dependency handling by being less restrictive (added lower limit for phpunit)
-* [1.1.2](https://github.com/bazzline/php_component_cli_argument/tree/1.1.2) - released at 07.11.2015
-    * updated dependencies
-* [1.1.1](https://github.com/bazzline/php_component_cli_argument/tree/1.1.1) - released at 18.08.2015
-    * updated dependencies
-* [1.1.0](https://github.com/bazzline/php_component_cli_argument/tree/1.1.0) - released at 02.07.2015
-    * added second argument to `Arguments::__construct()` and `Arguments::setArguments` called "removeFirstArgument"
-* [1.0.2](https://github.com/bazzline/php_component_cli_argument/tree/1.0.2) - released at 02.07.2015
-    * updated dependencies
-* [1.0.1](https://github.com/bazzline/php_component_cli_argument/tree/1.0.1) - released at 22.05.2015
-    * updated dependencies
-* [1.0.0](https://github.com/bazzline/php_component_cli_argument/tree/1.0.0) - released at 23.04.2015
-    * initial release
 
 # Other Great Components
 
