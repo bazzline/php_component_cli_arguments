@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-### To Change
+### Changeed
 
 ## [1.4.1](https://github.com/bazzline/php_component_cli_argument/tree/1.4.1) - released at 2017-05-18
 
