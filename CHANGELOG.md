@@ -22,6 +22,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changeed
 
+## [2.0.0](https://github.com/bazzline/php_component_cli_argument/tree/2.0.0) - released at 2018-01-12
+
+### Changed
+
+* dropped support for all PHP Versions below 7.0
+
 ## [1.4.1](https://github.com/bazzline/php_component_cli_argument/tree/1.4.1) - released at 2017-05-18
 
 ### Changed

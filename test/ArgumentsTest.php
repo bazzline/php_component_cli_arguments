@@ -7,9 +7,9 @@
 namespace Test\Net\Bazzline\Component\Cli\Arguments;
 
 use Net\Bazzline\Component\Cli\Arguments\Arguments;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class ArgumentsTest extends PHPUnit_Framework_TestCase
+class ArgumentsTest extends TestCase
 {
     public function testWithNoArgv()
     {
@@ -24,7 +24,7 @@ class ArgumentsTest extends PHPUnit_Framework_TestCase
     /**
      * @return array
      */
-    public function testWithArgumentsProvider()
+    public function withArgumentsProvider()
     {
         return [
             'empty argv' => [
@@ -214,7 +214,7 @@ class ArgumentsTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @dataProvider testWithArgumentsProvider
+     * @dataProvider withArgumentsProvider
      * @param array $argv
      * @param array $expectedArguments
      * @param array $expectedFlags
@@ -227,8 +227,7 @@ class ArgumentsTest extends PHPUnit_Framework_TestCase
         array $expectedFlags,
         array $expectedLists,
         array $expectedValues
-    )
-    {
+    ) {
         $arguments = $this->createArguments($argv);
 
         $this->assertEquals((!empty($expectedArguments)), $arguments->hasArguments());
@@ -258,7 +257,10 @@ class ArgumentsTest extends PHPUnit_Framework_TestCase
 
     public function testWithArgumentsAndNotRemovingFirstArgument()
     {
-        $argv       = ['foo', 'bar'];
+        $argv       = [
+            'foo',
+            'bar'
+        ];
         $arguments  = $this->createArguments($argv, false);
 
         $this->assertEquals($argv, $arguments->getArguments());
