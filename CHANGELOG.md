@@ -14,7 +14,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### To Change
 
 * cover Parser with unit tests
-* synchronize styling of the release dates
 
 ## [Unreleased]
 
