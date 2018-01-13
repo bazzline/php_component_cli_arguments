@@ -19,6 +19,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+* added nightly to the travis.yml
+
 ### Changeed
 
 ## [2.0.0](https://github.com/bazzline/php_component_cli_argument/tree/2.0.0) - released at 2018-01-12
