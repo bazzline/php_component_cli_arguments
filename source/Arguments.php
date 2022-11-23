@@ -8,26 +8,13 @@ namespace Net\Bazzline\Component\Cli\Arguments;
 
 class Arguments
 {
-    /** @var array */
-    private $arguments;
+    private array $arguments;
+    private array $flags;
+    private array $lists;
+    private Parser $parser;
+    private array $values;
 
-    /** @var array */
-    private $flags;
-
-    /** @var array */
-    private $lists;
-
-    /** @var Parser */
-    private $parser;
-
-    /** @var array */
-    private $values;
-
-    /**
-     * @param null|array $argv
-     * @param boolean $removeFirstArgument
-     */
-    public function __construct($argv = null, $removeFirstArgument = true)
+    public function __construct(array $argv = null, bool $removeFirstArgument = true)
     {
         $this->parser = new Parser();
 
@@ -38,137 +25,84 @@ class Arguments
         }
     }
 
-    /**
-     * @return array
-     */
-    public function getArguments()
+    public function getArguments(): array
     {
         return $this->arguments;
     }
 
-    /**
-     * @return array
-     */
-    public function getFlags()
+    public function getFlags(): array
     {
         return $this->flags;
     }
 
-    /**
-     * @param string $name
-     * @return null|array
-     */
-    public function getList($name)
+    public function getList(string $name): null|array
     {
         return (isset($this->lists[$name]))
             ? $this->lists[$name]
             : null;
     }
 
-    /**
-     * @return int
-     */
-    public function getNumberOfArguments()
+    public function getNumberOfArguments(): int
     {
         return (count($this->arguments));
     }
 
-    /**
-     * @return int
-     */
-    public function getNumberOfFlags()
+    public function getNumberOfFlags(): int
     {
         return (count($this->flags));
     }
 
-    /**
-     * @return int
-     */
-    public function getNumberOfLists()
+    public function getNumberOfLists(): int
     {
         return (count($this->lists));
     }
 
-    /**
-     * @return int
-     */
-    public function getNumberOfValues()
+    public function getNumberOfValues(): int
     {
         return (count($this->values));
     }
 
-    /**
-     * @return array
-     */
-    public function getLists()
+    public function getLists(): array
     {
         return $this->lists;
     }
 
-    /**
-     * @return array
-     */
-    public function getValues()
+    public function getValues(): array
     {
         return $this->values;
     }
 
-    /**
-     * @return bool
-     */
-    public function hasArguments()
+    public function hasArguments(): bool
     {
         return (!empty($this->arguments));
     }
 
-    /**
-     * @param string $name
-     * @return bool
-     */
-    public function hasFlag($name)
+    public function hasFlag(string $name): bool
     {
         return (in_array($name, $this->flags));
     }
 
-    /**
-     * @return bool
-     */
-    public function hasFlags()
+    public function hasFlags(): bool
     {
         return (!empty($this->flags));
     }
 
-    /**
-     * @param string $name
-     * @return bool
-     */
-    public function hasList($name)
+    public function hasList(string $name): bool
     {
         return (isset($this->lists[$name]));
     }
 
-    /**
-     * @return bool
-     */
-    public function hasLists()
+    public function hasLists(): bool
     {
         return (!empty($this->lists));
     }
 
-    /**
-     * @return bool
-     */
-    public function hasValues()
+    public function hasValues(): bool
     {
         return (!empty($this->values));
     }
 
-    /**
-     * @param array $argv
-     * @param boolean $removeFirstArgument
-     * @return $this
-     */
-    public function parseArguments(array $argv, $removeFirstArgument = true)
+    public function parseArguments(array $argv, bool $removeFirstArgument = true): self
     {
         if ($removeFirstArgument) {
             array_shift($argv);
@@ -181,34 +115,22 @@ class Arguments
         return $this;
     }
 
-    /**
-     * @return array
-     */
-    public function convertToArray()
+    public function convertToArray(): array
     {
         return $this->getArguments();
     }
 
-    /**
-     * @return string
-     */
-    public function convertToString()
+    public function convertToString(): string
     {
         return implode(' ', $this->convertToArray());
     }
 
-    /**
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->convertToString();
     }
 
-    /**
-     * @param Parser $parser
-     */
-    private function setArgumentsFromParser(Parser $parser)
+    private function setArgumentsFromParser(Parser $parser): void
     {
         $this->flags    = $parser->getFlags();
         $this->lists    = $parser->getLists();

@@ -7,24 +7,16 @@ namespace Net\Bazzline\Component\Cli\Arguments;
 
 class Parser
 {
-    /** @var array */
-    private $flags;
-
-    /** @var array */
-    private $lists;
-
-    /** @var array */
-    private $values;
+    private array $flags;
+    private array $lists;
+    private array $values;
 
     public function __construct()
     {
         $this->initiate();
     }
 
-    /**
-     * @param array $arguments
-     */
-    public function parse(array $arguments)
+    public function parse(array $arguments): void
     {
         $this->initiate();
 
@@ -33,65 +25,43 @@ class Parser
         }
     }
 
-    /**
-     * @return array
-     */
-    public function getFlags()
+    public function getFlags(): array
     {
         return $this->flags;
     }
 
-    /**
-     * @return array
-     */
-    public function getLists()
+    public function getLists(): array
     {
         return $this->lists;
     }
 
-    /**
-     * @return array
-     */
-    public function getValues()
+    public function getValues(): array
     {
         return $this->values;
     }
 
-    /**
-     * @param string $name
-     * @param mixed $value
-     */
-    private function addToList($name, $value)
+    private function addToList(string $name, mixed $value): void
     {
         $value = trim($value, '"'); //remove >"< if exists
 
-        if (isset($this->lists[$name])) {
-            $collection = $this->lists[$name];
-        } else {
-            $collection = [];
-        }
+        $collection = $this->lists[$name] ?? [];
 
         $collection[]       = $value;
         $this->lists[$name] = $collection;
     }
 
-    /**
-     * @param string $string
-     * @param string $search
-     * @return bool
-     */
-    private function contains($string, $search)
+    private function contains(string $string, string $search): bool
     {
         if (strlen($search) === 0) {
             $contains = false;
         } else {
-            $contains = !(strpos($string, $search) === false);
+            $contains = !(!str_contains($string, $search));
         }
 
         return $contains;
     }
 
-    private function handleLongNameListOrFlag($argument)
+    private function handleLongNameListOrFlag(string $argument): void
     {
         if ($this->contains($argument, '=')) {
             $position   = strpos($argument, '=');
@@ -103,7 +73,7 @@ class Parser
         }
     }
 
-    private function handleShortNameListOrFlag($argument)
+    private function handleShortNameListOrFlag(string $argument): void
     {
         $containsEqualCharacter             = ($this->contains($argument, '='));
         $equalCharacterIsOnSecondPosition   = (strpos($argument, '=') === 1);
@@ -118,23 +88,20 @@ class Parser
             $length = strlen($argument);
             $iterator = 0;
             while ($iterator < $length) {
-                $this->flags[] = $argument{$iterator};
+                $this->flags[] = $argument[$iterator];
                 ++$iterator;
             }
         }
     }
 
-    private function initiate()
+    private function initiate(): void
     {
         $this->flags    = [];
         $this->lists    = [];
         $this->values   = [];
     }
 
-    /**
-     * @param $argument
-     */
-    private function addToFittingCollection($argument)
+    private function addToFittingCollection(string $argument): void
     {
         if ($this->hasLengthOf($argument, 1)) {
             $this->values[] = $argument;
@@ -149,26 +116,15 @@ class Parser
         }
     }
 
-    /**
-     * @param string $string
-     * @param string $start
-     * @return bool
-     */
-    private function startsWith($string, $start)
+    private function startsWith(string $string, string $start): bool
     {
         return (strncmp($string, $start, strlen($start)) === 0);
     }
 
-    /**
-     * @param string $string
-     * @param int $expectedLength
-     * @return bool
-     */
-    private function hasLengthOf($string, $expectedLength)
+    private function hasLengthOf(string $string, int $expectedLength): bool
     {
-        $length         = strlen($string);
-        $hasLengthOf    = ($length == $expectedLength);
+        $length = strlen($string);
 
-        return $hasLengthOf;
+        return ($length == $expectedLength);
     }
 }

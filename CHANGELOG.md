@@ -23,6 +23,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changeed
 
+## [2.1.0](https://github.com/bazzline/php_component_cli_argument/tree/2.1.0) - released at 2022-11-23
+
+### Changeed
+
+* Raised minimum php version requirement from `7.0` to `8.0`
+* Updated development requirement from phpunit 6.0 to 8.0
+* Migrated phpunit xml
+* Migrated code base to php 8.0
+
 ## [2.0.0](https://github.com/bazzline/php_component_cli_argument/tree/2.0.0) - released at 2018-01-12
 
 ### Changed

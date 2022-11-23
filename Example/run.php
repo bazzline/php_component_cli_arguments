@@ -4,9 +4,11 @@
  * @since: 2015-04-16
  */
 
+use Net\Bazzline\Component\Cli\Arguments\Arguments;
+
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$arguments = new \Net\Bazzline\Component\Cli\Arguments\Arguments($argv);
+$arguments = new Arguments($argv);
 
 if ($arguments->hasArguments()) {
     echo $arguments->getNumberOfArguments() . ' arguments provided:' . PHP_EOL;
